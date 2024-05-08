@@ -15,10 +15,10 @@ import javax.swing.JPanel
 
 
 fun main() {
-    // Setting up GUI
+
     initial_GUI_setup()
-    //gpt_setup()
-    create_wallet()
+    setup_choose_between_import_or_creation_panel()
+
 
 
 
