@@ -1,22 +1,17 @@
 package com.danielculbert.main
 
 import java.awt.Color
-import java.awt.Image
-import java.awt.Toolkit
-import javax.swing.ImageIcon
-import javax.swing.JFrame
-import javax.swing.JLabel
-import javax.swing.JPanel
-import java.net.URL
-import java.io.InputStream
+import java.awt.Container
 import java.util.*
-import javax.swing.JButton
+import javax.swing.*
+
 
 private val panelStack = Stack<JPanel>()
 //private lateinit var home_frame: JFrame
 val home_frame = JFrame("H.E.L.L.O.")
 val home_panel = JPanel()
 val choose_panel = JPanel()
+val create_wallet_panel = JPanel()
 
 fun initial_GUI_setup() {
 
@@ -60,42 +55,48 @@ fun initial_GUI_setup() {
 
 
 
-fun goto_screen_where_user_chooses_between_creation_or_importing() {
-
-    //panelStack.push(choose_panel)
-
-
-
-    val customColor = Color.decode("#CBF0B4")
-    choose_panel.background = customColor
-
-
-    val backButton = JButton("Back")
-
-
-    home_frame.setContentPane(choose_panel)
-    home_frame.revalidate()
-    home_frame.repaint()
-
-    home_frame.contentPane.add(choose_panel)
-
-
-
-}//goto_choose
-
-
-
 fun setup_choose_between_import_or_creation_panel() {
     val customColor = Color.decode("#CBF0B4")
     choose_panel.background = customColor
     val backButton = JButton("Back")
+    val createWalletButton = JButton("Create Wallet")
+    val importWalletButton = JButton("Import Wallet")
     choose_panel.add(backButton)
+    choose_panel.add(createWalletButton)
+    choose_panel.add(importWalletButton)
+
 
     backButton.addActionListener {
         redirect_to_new_panel(home_panel)
     }
 
+    createWalletButton.addActionListener {
+        redirect_to_new_panel(create_wallet_panel)
+    }
+
+}//setup choose panel
+
+fun setup_create_wallet_button() {
+    val customColor = Color.decode("#CBF0B4")
+    create_wallet_panel.background = customColor
+    val yourAddressIsLabel = JLabel("Your address is: ")
+    create_wallet_panel.add(yourAddressIsLabel)
+    val addressLabel = JLabel("")
+    create_wallet_panel.add(addressLabel)
+    val generateButton = JButton("Generate Wallet")
+    create_wallet_panel.add(generateButton)
+    addressLabel.text = created_address
+
+    generateButton.addActionListener {
+        create_wallet()
+        addressLabel.text = created_address
+        home_frame.repaint()
+    }
+
+
 }
+
+
 
 fun redirect_to_new_panel(redirect_to:JPanel) {
 
@@ -103,5 +104,12 @@ fun redirect_to_new_panel(redirect_to:JPanel) {
     home_frame.contentPane.add(redirect_to)
     home_frame.revalidate()
     home_frame.repaint()
+
+}
+
+
+fun change_to_box() {
+    val pane: Container = home_frame.getContentPane()
+    pane.setLayout(BoxLayout(pane, BoxLayout.Y_AXIS))
 
 }

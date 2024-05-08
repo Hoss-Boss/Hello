@@ -18,7 +18,8 @@ fun main() {
 
     initial_GUI_setup()
     setup_choose_between_import_or_creation_panel()
-
+    setup_create_wallet_button()
+    create_wallet()
 
 
 

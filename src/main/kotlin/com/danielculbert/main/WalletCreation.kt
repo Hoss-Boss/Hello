@@ -7,6 +7,7 @@ import org.xrpl.xrpl4j.crypto.keys.KeyPair
 import org.xrpl.xrpl4j.crypto.keys.Seed
 import org.xrpl.xrpl4j.model.transactions.Address
 
+var created_address = "..."
 
 fun create_wallet() {
 
@@ -19,10 +20,11 @@ fun create_wallet() {
     println("Generated KeyPair: $randomKeyPair")
 
     val classicAddress: Address = randomKeyPair.publicKey().deriveAddress()
+    created_address = classicAddress.toString()
 
     println("Classic Address: " + classicAddress);
 
-    val xAddress = AddressCodec.getInstance().classicAddressToXAddress(classicAddress, true)
+    val xAddress = AddressCodec.getInstance().classicAddressToXAddress(classicAddress, false)
     println("X Address: " + xAddress);
 
 }
