@@ -12,9 +12,10 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
-    implementation("com.squareup.okhttp3:okhttp:4.9.3") // Use the latest version available
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
     implementation("org.xrpl:xrpl4j-client:3.3.0")
-    implementation("org.xrpl:xrpl4j-core:3.3.0") // Use the latest version available
+    implementation("org.xrpl:xrpl4j-core:3.3.0")
+    implementation("org.xerial:sqlite-jdbc:3.39.2.0")
 
 
 }

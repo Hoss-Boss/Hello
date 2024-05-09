@@ -6,6 +6,9 @@ import org.xrpl.xrpl4j.codec.addresses.AddressCodec
 import org.xrpl.xrpl4j.crypto.keys.KeyPair
 import org.xrpl.xrpl4j.crypto.keys.Seed
 import org.xrpl.xrpl4j.model.transactions.Address
+import java.sql.Connection
+import java.sql.DriverManager
+
 
 var created_address = "..."
 

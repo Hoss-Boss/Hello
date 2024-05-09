@@ -2,6 +2,7 @@ package com.danielculbert.main
 
 import java.awt.Color
 import java.awt.Container
+import java.awt.Image
 import java.util.*
 import javax.swing.*
 
@@ -12,13 +13,14 @@ val home_frame = JFrame("H.E.L.L.O.")
 val home_panel = JPanel()
 val choose_panel = JPanel()
 val create_wallet_panel = JPanel()
+val first_time_panel = JPanel()
 
 fun initial_GUI_setup() {
 
     //Sets up and displays the frame
     //sets up and sets the home panel on the frame
 
-    home_frame.setSize(500, 500)
+    home_frame.setSize(750, 600)
     home_frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
 
     home_frame.contentPane.add(home_panel)
@@ -27,7 +29,7 @@ fun initial_GUI_setup() {
     home_panel.background = customColor
 
     // Adding welcome image
-    val welcomeImage = ImageIcon("Welcome1.png") // Ensure the path is correct
+    val welcomeImage = ImageIcon("src/Welcome1.png") // Ensure the path is correct
     val welcomeLabel = JLabel(welcomeImage)
     home_panel.add(welcomeLabel)
 
@@ -76,7 +78,7 @@ fun setup_choose_between_import_or_creation_panel() {
 
 }//setup choose panel
 
-fun setup_create_wallet_button() {
+fun setup_create_wallet_panel() {
     val customColor = Color.decode("#CBF0B4")
     create_wallet_panel.background = customColor
     val yourAddressIsLabel = JLabel("Your address is: ")
@@ -104,6 +106,29 @@ fun redirect_to_new_panel(redirect_to:JPanel) {
     home_frame.contentPane.add(redirect_to)
     home_frame.revalidate()
     home_frame.repaint()
+
+}
+
+fun setup_first_time_panel() {
+
+    first_time_panel.background = Color.decode("#CBF0B4")
+    val welcome_image_ImageIcon = ImageIcon("Welcome1.png")
+    val welcome_image_Image = welcome_image_ImageIcon.getImage()
+    val scaledImage = welcome_image_Image.getScaledInstance(300, 300, Image.SCALE_SMOOTH)
+    val scaled_welcome_image_ImageIcon = ImageIcon(scaledImage)
+    val welcome_JLabel = JLabel(scaled_welcome_image_ImageIcon)
+    first_time_panel.add(welcome_JLabel)
+
+    val telling_user_the_location_label = JLabel("Your wallets database will be saved in a new folder Hello-World-XRP, in your Documents directory")
+    first_time_panel.add(telling_user_the_location_label)
+
+    val homeButton = JButton("I understand")
+    first_time_panel.add(homeButton)
+
+    homeButton.addActionListener {
+        redirect_to_new_panel(home_panel)
+    }
+
 
 }
 
