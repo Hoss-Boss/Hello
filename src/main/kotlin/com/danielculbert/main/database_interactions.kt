@@ -4,8 +4,11 @@ import java.sql.Connection
 import java.sql.DriverManager
 import java.security.MessageDigest;
 
+
 fun getConnection(): Connection {
-    val url = "jdbc:sqlite:wallets.db"
+    val documentsPath = getDocumentsFolderPath()
+    val wallets_db_file_path = "$documentsPath/Hello-XRP-Wallet/wallets.db"
+    val url = "jdbc:sqlite:$wallets_db_file_path"
     return DriverManager.getConnection(url)
 }
 

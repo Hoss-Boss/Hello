@@ -36,7 +36,7 @@ fun create_existence_file(filename: String): File {
 fun check_if_db_file_exists(): Boolean {
 
     val helloXRPWalletPath = "${getDocumentsFolderPath()}/Hello-XRP-Wallet"
-    val db_file = File("${helloXRPWalletPath}/Wallets.db")
+    val db_file = File("${helloXRPWalletPath}/wallets.db")
 
     if (db_file.exists()) {
         println("File exists!")
@@ -47,4 +47,23 @@ fun check_if_db_file_exists(): Boolean {
         return false
     }
 
+}
+
+fun create_file(filename: String): File {
+    val documentsPath = getDocumentsFolderPath()
+    val helloXRPWalletPath = "$documentsPath/Hello-XRP-Wallet" // Path for the new folder
+
+    // Create a File object for the new Hello-XRP-Wallet directory
+    val helloXRPWalletDir = File(helloXRPWalletPath)
+
+    // Ensure the Hello-XRP-Wallet directory exists
+    if (!helloXRPWalletDir.exists()) {
+        helloXRPWalletDir.mkdirs() // Make directories if they do not exist
+    }
+
+    // Create a file in the Hello-XRP-Wallet directory
+    val file = File(helloXRPWalletDir, filename)
+    file.createNewFile() // Creates the file if it does not exist
+
+    return file
 }

@@ -79,6 +79,15 @@ fun setup_choose_between_import_or_creation_panel() {
 }//setup choose panel
 
 fun setup_create_wallet_panel() {
+
+    val encryption_checkbox = JCheckBox("Enable encryption for this wallet?")
+    val back_button = JButton("Back")
+    back_button.addActionListener {
+        redirect_to_new_panel(choose_panel)
+    }
+    create_wallet_panel.add(back_button)
+    create_wallet_panel.add(encryption_checkbox)
+
     val customColor = Color.decode("#CBF0B4")
     create_wallet_panel.background = customColor
     val yourAddressIsLabel = JLabel("Your address is: ")
